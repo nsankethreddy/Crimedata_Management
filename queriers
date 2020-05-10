@@ -1,0 +1,16 @@
+CREATE TABLE public.OFFICER (officer_id char(6) CHECK(officer_id SIMILAR TO 'OF____' ), officer_name varchar(30),officer_rank int, CONSTRAINT officer_pk PRIMARY KEY (officer_id))
+
+
+
+CREATE TABLE public.OFFICER (officer_id char(6) CHECK(officer_id SIMILAR TO 'OF____' ), officer_name varchar(30),officer_rank int, CONSTRAINT officer_pk PRIMARY KEY (officer_id));
+
+INSERT INTO public.officer
+(officer_id, officer_name, officer_rank)
+VALUES('OF6473', 'Tulsi Lanka', 4),('OF7789','Bahadur Kumer',2),('OF9876','Obaid Chandra Nagi',2),('OF8912','Komal Ramroop',4);
+
+
+CREATE TABLE public.FIR (fir_id numeric(4) , fir_date date, fir_time time ,place char(20),incident_id char(7) check(incident_id similar to 'IN_____'), CONSTRAINT fir_pk PRIMARY KEY (fir_id),constraint incident_id_fk foreign key(incident_id) references incident(incident_id));
+
+INSERT INTO public.fir
+(fir_id, fir_date, fir_time, place, incident_id)
+VALUES(1111, '2000-09-21', '16:30:00', 'Nagarshab', 'IN00123'),(1234, '2018-10-30', '20:30:00', 'Sakgram', 'IN12836'),(1225, '2011-11-03', '17:30:00', 'Chungpe', 'IN12823'),(3245, '2008-04-01', '20:30:00', 'Nugatota', 'IN78368'),(3427, '2020-01-01', '04:30:00', 'Lalmoganj', 'IN22221'),(8956, '2001-12-1', '3:00:00', 'Monmanu', 'IN12811'),(9836, '2012-12-01', '22:45:00', 'Bandigadhi', 'IN21291'),(5534, '2014-12-17', '12:15:00', 'Chamaito', 'IN91234'),(0812, '2002-09-03', '23:30:00', 'Mingara', 'IN43909'),(7835, '2012-11-30', '12:10:00', 'Barthampalle', 'IN19811');
