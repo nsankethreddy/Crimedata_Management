@@ -1,83 +1,4 @@
-OFFICER
-
-CREATE TABLE public.OFFICER (officer_id char(6) CHECK(officer_id SIMILAR TO 'OF____' ), officer_name varchar(30),officer_rank int, CONSTRAINT officer_pk PRIMARY KEY (officer_id));
-
-INSERT INTO public.officer
-(officer_id, officer_name, officer_rank)
-VALUES('OF6473', 'Tulsi Lanka', 4),('OF7789','Bahadur Kumer',2),('OF9876','Obaid Chandra Nagi',2),('OF8912','Komal Ramroop',4);
-
-
-officer_id|officer_name         |officer_rank|
-----------|---------------------|------------|
-OF1232    |Riddhi Abhishek Nanda|           1|
-OF2389    |Astha Dhiraj Mani    |           3|
-OF6473    |Tulsi Lanka          |           4|
-OF7789    |Bahadur Kumer        |           2|
-OF9876    |Obaid Chandra Nagi   |           2|
-OF8912    |Komal Ramroop        |           4|
-
----------------------------------------------------------
-INCIDENT
-
-incident_id|incident_date|incident_time|place               |
------------|-------------|-------------|--------------------|
-IN00123    |   2000-09-21|     06:30:00|Nagarshab           |
-IN12836    |   2018-10-30|     15:30:00|Sakgram             |
-IN12823    |   2011-11-03|     07:30:00|Chungpe             |
-IN78368    |   2008-04-01|     16:30:00|Nugatota            |
-IN22221    |   2020-01-01|     01:30:00|Lalmoganj           |
-IN12811    |   2001-11-30|     23:30:00|Monmanu             |
-IN21291    |   2012-12-01|     18:45:00|Bandigadhi          |
-IN91234    |   2014-12-17|     08:15:00|Chamaito            |
-IN43909    |   2002-09-03|     22:10:00|Mingara             |
-IN19811    |   2012-11-30|     10:40:00|Barthampalle        |
-
-
-
--------------------------------------------------------
-FIR
-
-CREATE TABLE public.FIR (fir_id numeric(4) , fir_date date, fir_time time ,place char(20),incident_id char(7) check(incident_id similar to 'IN_____'), CONSTRAINT fir_pk PRIMARY KEY (fir_id),constraint incident_id_fk foreign key(incident_id) references incident(incident_id));
-
-INSERT INTO public.fir
-(fir_id, fir_date, fir_time, place, incident_id)
-VALUES(1111, '2000-09-21', '16:30:00', 'Nagarshab', 'IN00123'),(1234, '2018-10-30', '20:30:00', 'Sakgram', 'IN12836'),(1225, '2011-11-03', '17:30:00', 'Chungpe', 'IN12823'),(3245, '2008-04-01', '20:30:00', 'Nugatota', 'IN78368'),(3427, '2020-01-01', '04:30:00', 'Lalmoganj', 'IN22221'),(8956, '2001-12-1', '3:00:00', 'Monmanu', 'IN12811'),(9836, '2012-12-01', '22:45:00', 'Bandigadhi', 'IN21291'),(5534, '2014-12-17', '12:15:00', 'Chamaito', 'IN91234'),(0812, '2002-09-03', '23:30:00', 'Mingara', 'IN43909'),(7835, '2012-11-30', '12:10:00', 'Barthampalle', 'IN19811');
-
-fir_id|fir_date  |fir_time|place               |incident_id|
-------|----------|--------|--------------------|-----------|
-  1111|2000-09-21|16:30:00|Nagarshab           |IN00123    |
-  1234|2018-10-30|20:30:00|Sakgram             |IN12836    |
-  1225|2011-11-03|17:30:00|Chungpe             |IN12823    |
-  3245|2008-04-01|20:30:00|Nugatota            |IN78368    |
-  3427|2020-01-01|04:30:00|Lalmoganj           |IN22221    |
-  8956|2001-12-01|03:00:00|Monmanu             |IN12811    |
-  9836|2012-12-01|22:45:00|Bandigadhi          |IN21291    |
-  5534|2014-12-17|12:15:00|Chamaito            |IN91234    |
-  7835|2012-11-30|12:10:00|Barthampalle        |IN19811    |
-  4523|2002-09-03|23:30:00|Mingara             |IN43909    |
------------------------
-PETIONER_FIR
-
-INSERT INTO public.petitioner_fir
-(petitioner_name, adhar, contact, gender, fir_id)
-VALUES('Riddhi Abhishek', 601172998096149, 6925859853, 'F', 1111),('Astha Dhiraj', 402400717012471, 4690433547, 'F', 1234),('Vivek Dev Kant', 492924158226432, 3314864391, 'M', 4523),('Alpa Dora', 492992053109004, 8175555984, 'F', 1225),('Arvind Banerjee', 725391634598230, 9027357320, 'M', 3245),('Usman Seth', 172539087898765, 2089675667, 'M', 3427),('Arun Sandal', 897867785612435, 9890989098, 'M', 8956),('Uday Pardeshi', 908989786756431, 6787564980, 'M', 9836),('Nagma Solanki', 908912345361617, 8787865456, 'F', 5534),('Uma Iyer', 476783459800724, 7932784568, 'F', 7835);
-
-
-petitioner_name     |adhar          |contact   |gender|fir_id|
---------------------|---------------|----------|------|------|
-Riddhi Abhishek     |601172998096149|6925859853|F     |  1111|
-Astha Dhiraj        |402400717012471|4690433547|F     |  1234|
-Vivek Dev Kant      |492924158226432|3314864391|M     |  4523|
-Alpa Dora           |492992053109004|8175555984|F     |  1225|
-Arvind Banerjee     |725391634598230|9027357320|M     |  3245|
-Usman Seth          |172539087898765|2089675667|M     |  3427|
-Arun Sandal         |897867785612435|9890989098|M     |  8956|
-Uday Pardeshi       |908989786756431|6787564980|M     |  9836|
-Nagma Solanki       |908912345361617|8787865456|F     |  5534|
-Uma Iyer            |476783459800724|7932784568|F     |  7835|
-
-
-============================================================================
+===========================================================================
 OFFICER
 
 CREATE TABLE public.OFFICER (officer_id char(6) CHECK(officer_id LIKE 'OF____'), officer_name varchar(30),officer_rank int, CONSTRAINT officer_pk PRIMARY KEY (officer_id));
@@ -95,3 +16,67 @@ INSERT INTO public.incident
 (incident_id, incident_date, incident_time, incident_place)
 values('IN00123','2000-09-21','06:30:00','Nagarshab'),('IN12836','2018-10-30','15:30:00','Sakgram'),('IN12823','2011-11-03','07:30:00','Chungpe'),('IN78368','2008-04-01','16:30:00','Nugatota'),('IN22221','2020-01-01','01:30:00','Lalmoganj'),('IN12811','2001-11-30','23:30:00','Monmanu'),('IN21291','2012-12-01','18:45:00','Bandigadhi'),('IN91234','2014-12-17','08:15:00','Chamaito'),('IN43909','2002-09-03','22:10:00','Mingara'),('IN19811','2012-11-30','10:40:00','Barthampalle');
 
+=======================================================================
+
+FIR
+
+CREATE TABLE public.FIR (fir_id numeric(4) , fir_date date, fir_time time ,place varchar(20),incident_id char(7) check(incident_id similar to 'IN_____'), CONSTRAINT fir_pk PRIMARY KEY (fir_id),constraint incident_id_fk foreign key(incident_id) references incident(incident_id));
+
+INSERT INTO public.fir
+(fir_id, fir_date, fir_time, place, incident_id)
+VALUES(1111, '2000-09-21', '16:30:00', 'Nagarshab', 'IN00123'),(1234, '2018-10-30', '20:30:00', 'Sakgram', 'IN12836'),(1225, '2011-11-03', '17:30:00', 'Chungpe', 'IN12823'),(3245, '2008-04-01', '20:30:00', 'Nugatota', 'IN78368'),(3427, '2020-01-01', '04:30:00', 'Lalmoganj', 'IN22221'),(8956, '2001-12-1', '3:00:00', 'Monmanu', 'IN12811'),(9836, '2012-12-01', '22:45:00', 'Bandigadhi', 'IN21291'),(5534, '2014-12-17', '12:15:00', 'Chamaito', 'IN91234'),(4523, '2002-09-03', '23:30:00', 'Mingara', 'IN43909'),(7835, '2012-11-30', '12:10:00', 'Barthampalle', 'IN19811');
+
+===========================================================================
+PETITIONER FIR
+
+create table public.petitioner_fir(petitioner_name varchar(20),adhar numeric(15),contact numeric(10),gender char(1) check(gender='M' OR gender='F'),fir_id numeric(4),constraint petifir_pk primary key (petitioner_name,fir_id),constraint petifir_fk foreign key(fir_id) references fir(fir_id));
+
+INSERT INTO public.petitioner_fir
+(petitioner_name, adhar, contact, gender, fir_id)
+VALUES('Riddhi Abhishek', 601172998096149, 6925859853, 'F', 1111),('Astha Dhiraj', 402400717012471, 4690433547, 'F', 1234),('Alpa Dora', 492992053109004, 8175555984, 'F', 1225),('Arvind Banerjee', 725391634598230, 9027357320, 'M', 3245),('Usman Seth', 172539087898765, 2089675667, 'M', 3427),('Arun Sandal', 897867785612435, 9890989098, 'M', 8956),('Uday Pardeshi', 908989786756431, 6787564980, 'M', 9836),('Nagma Solanki', 908912345361617, 8787865456, 'F', 5534),('Uma Iyer', 476783459800724, 7932784568, 'F', 7835),('Vivek Dev Kant', 492924158226432, 3314864391, 'M', 4523);
+==========================================================================
+ACCUSED
+
+create table ACCUSED(adhar numeric(15) PRIMARY KEY , accused_name varchar(20),accused_gender char(1) check(accused_gender='M' OR accused_gender='F') , accused_alias varchar(10) ,accused_status varchar(10) 
+ check(accused_status ='Bailed' OR accused_status ='Released' OR accused_status ='Arrested' OR accused_status ='Escaped'), accused_identification varchar(100) ,accused_age varchar(3) check(accused_age ~ '^[1-100]'));
+
+INSERT INTO public.accused
+(adhar, accused_name, accused_gender, accused_alias, accused_status, accused_identification, accused_age)
+VALUES 
+(755757641512323, 'Andy Reyes', 'M', 'Andy', 'Arrested', 'Mole on the chin', '34'), 
+(122120945598818, 'Lester Higgins', 'M', 'Lester', 'Bailed', 'Scar on the face', '31'),
+(640014902532644, 'Bradford Gomez', 'M', 'Brad', 'Bailed', 'Mole on stomach', '24'),
+(527032007745234, 'Micheal Jennings', 'M', 'Jenning', 'Bailed', 'Blue eyes', '26'),
+(343459534401788, 'Bert Mitchell', 'M', 'Bert', 'Bailed', 'Bald', '45'),
+(627313982654345, 'Minato Ellis', 'M', 'Ellis', 'Bailed', 'Ear missing', '63'),
+(545544054967129, 'Roosevelt Morgan', 'M', 'Morgan', 'Bailed', 'Lip ring', '19'),
+(399570643523212, 'Donald Woods', 'M', 'Donald', 'Bailed', 'Orange face', '28'),
+(222224064893837, 'Bena Kim', 'F', 'Kim', 'Bailed', '6 fingers on left hand', '39'),
+(762578909323787, 'Italia Robin', 'F', 'Italia', 'Bailed', 'Blonde curly hair', '44'),
+(223211916729587, 'Shalom Cross', 'F', 'Cross', 'Bailed', 'One eye blind', '86'),
+(294122921612121, 'Christie Fox', 'F', 'Fox', 'Bailed', 'Little finger missing on right hand', '49'),
+(119990817674655, 'Denice Ritchie', 'F', 'Den', 'Bailed', 'Left leg amputated', '48');
+
+
+---------------------------------------------------
+create table ACCUSED(adhar numeric(15) PRIMARY KEY , accused_name varchar(20),accused_gender char(1) check(accused_gender='M' OR accused_gender='F') , accused_alias varchar(10) ,accused_status varchar(10) 
+ check(accused_status ='Bailed' OR accused_status ='Released' OR accused_status ='Arrested' OR accused_status ='Escaped'), accused_identification varchar(100) ,accused_age NUMERIC(3));
+
+ INSERT INTO public.accused
+(adhar, accused_name, accused_gender, accused_alias, accused_status, accused_identification, accused_age)
+VALUES 
+(755757641512323, 'Andy Reyes', 'M', 'Andy', 'Arrested', 'Mole on the chin', 34), 
+(122120945598818, 'Lester Higgins', 'M', 'Lester', 'Bailed', 'Scar on the face', 31),
+(640014902532644, 'Bradford Gomez', 'M', 'Brad', 'Bailed', 'Mole on stomach', 24),
+(527032007745234, 'Micheal Jennings', 'M', 'Jenning', 'Bailed', 'Blue eyes', 26),
+(343459534401788, 'Bert Mitchell', 'M', 'Bert', 'Bailed', 'Bald', 45),
+(627313982654345, 'Minato Ellis', 'M', 'Ellis', 'Bailed', 'Ear missing', 63),
+(545544054967129, 'Roosevelt Morgan', 'M', 'Morgan', 'Bailed', 'Lip ring', 19),
+(399570643523212, 'Donald Woods', 'M', 'Donald', 'Bailed', 'Orange face', 28),
+(222224064893837, 'Bena Kim', 'F', 'Kim', 'Bailed', '6 fingers on left hand', 39),
+(762578909323787, 'Italia Robin', 'F', 'Italia', 'Bailed', 'Blonde curly hair', 44),
+(223211916729587, 'Shalom Cross', 'F', 'Cross', 'Bailed', 'One eye blind', 86),
+(294122921612121, 'Christie Fox', 'F', 'Fox', 'Bailed', 'Little finger missing on right hand',49),
+(119990817674655, 'Denice Ritchie', 'F', 'Den', 'Bailed', 'Left leg amputated', 48);
+
+==================================================================
