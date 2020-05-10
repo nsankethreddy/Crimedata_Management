@@ -1,6 +1,4 @@
-CREATE TABLE public.OFFICER (officer_id char(6) CHECK(officer_id SIMILAR TO 'OF____' ), officer_name varchar(30),officer_rank int, CONSTRAINT officer_pk PRIMARY KEY (officer_id))
-
-
+OFFICER
 
 CREATE TABLE public.OFFICER (officer_id char(6) CHECK(officer_id SIMILAR TO 'OF____' ), officer_name varchar(30),officer_rank int, CONSTRAINT officer_pk PRIMARY KEY (officer_id));
 
@@ -9,8 +7,44 @@ INSERT INTO public.officer
 VALUES('OF6473', 'Tulsi Lanka', 4),('OF7789','Bahadur Kumer',2),('OF9876','Obaid Chandra Nagi',2),('OF8912','Komal Ramroop',4);
 
 
+officer_id|officer_name         |officer_rank|
+----------|---------------------|------------|
+OF1232    |Riddhi Abhishek Nanda|           1|
+OF2389    |Astha Dhiraj Mani    |           3|
+OF6473    |Tulsi Lanka          |           4|
+OF7789    |Bahadur Kumer        |           2|
+OF9876    |Obaid Chandra Nagi   |           2|
+OF8912    |Komal Ramroop        |           4|
+
+---------------------------------------------------------
+INCIDENT
+
+incident_id|incident_date|incident_time|place               |
+-----------|-------------|-------------|--------------------|
+IN00123    |   2000-09-21|     06:30:00|Nagarshab           |
+IN12836    |   2018-10-30|     15:30:00|Sakgram             |
+IN12823    |   2011-11-03|     07:30:00|Chungpe             |
+IN78368    |   2008-04-01|     16:30:00|Nugatota            |
+IN22221    |   2020-01-01|     01:30:00|Lalmoganj           |
+IN12811    |   2001-11-30|     23:30:00|Monmanu             |
+IN21291    |   2012-12-01|     18:45:00|Bandigadhi          |
+IN91234    |   2014-12-17|     08:15:00|Chamaito            |
+IN43909    |   2002-09-03|     22:10:00|Mingara             |
+IN19811    |   2012-11-30|     10:40:00|Barthampalle        |
+
+
+
+-------------------------------------------------------
+FIR
+
 CREATE TABLE public.FIR (fir_id numeric(4) , fir_date date, fir_time time ,place char(20),incident_id char(7) check(incident_id similar to 'IN_____'), CONSTRAINT fir_pk PRIMARY KEY (fir_id),constraint incident_id_fk foreign key(incident_id) references incident(incident_id));
 
 INSERT INTO public.fir
 (fir_id, fir_date, fir_time, place, incident_id)
 VALUES(1111, '2000-09-21', '16:30:00', 'Nagarshab', 'IN00123'),(1234, '2018-10-30', '20:30:00', 'Sakgram', 'IN12836'),(1225, '2011-11-03', '17:30:00', 'Chungpe', 'IN12823'),(3245, '2008-04-01', '20:30:00', 'Nugatota', 'IN78368'),(3427, '2020-01-01', '04:30:00', 'Lalmoganj', 'IN22221'),(8956, '2001-12-1', '3:00:00', 'Monmanu', 'IN12811'),(9836, '2012-12-01', '22:45:00', 'Bandigadhi', 'IN21291'),(5534, '2014-12-17', '12:15:00', 'Chamaito', 'IN91234'),(0812, '2002-09-03', '23:30:00', 'Mingara', 'IN43909'),(7835, '2012-11-30', '12:10:00', 'Barthampalle', 'IN19811');
+-----------------------
+PETIONER_FIR
+
+INSERT INTO public.petitioner_fir
+(petitioner_name, adhar, contact, gender, fir_id)
+VALUES('Riddhi Abhishek', 601172998096149, 6925859853, 'F', 1111),('Astha Dhiraj', 402400717012471, 4690433547, 'F', 1234),('Vivek Dev Kant', 492924158226432, 3314864391, 'M', 4523),('Alpa Dora', 492992053109004, 8175555984, 'F', 1225),('Arvind Banerjee', 725391634598230, 9027357320, 'M', 3245),('Usman Seth', 172539087898765, 2089675667, 'M', 3427),('Arun Sandal', 897867785612435, 9890989098, 'M', 8956),('Uday Pardeshi', 908989786756431, 6787564980, 'M', 9836),('Nagma Solanki', 908912345361617, 8787865456, 'F', 5534),('Uma Iyer', 476783459800724, 7932784568, 'F', 7835);
