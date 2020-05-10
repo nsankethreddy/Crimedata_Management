@@ -91,3 +91,7 @@ INCIDENT
 
 create table public.INCIDENT(incident_id char(7) CHECK(incident_id LIKE 'IN_____') PRIMARY KEY , incident_date date , incident_time time , incident_place varchar(20))
 
+INSERT INTO public.incident
+(incident_id, incident_date, incident_time, incident_place)
+values('IN00123','2000-09-21','06:30:00','Nagarshab'),('IN12836','2018-10-30','15:30:00','Sakgram'),('IN12823','2011-11-03','07:30:00','Chungpe'),('IN78368','2008-04-01','16:30:00','Nugatota'),('IN22221','2020-01-01','01:30:00','Lalmoganj'),('IN12811','2001-11-30','23:30:00','Monmanu'),('IN21291','2012-12-01','18:45:00','Bandigadhi'),('IN91234','2014-12-17','08:15:00','Chamaito'),('IN43909','2002-09-03','22:10:00','Mingara'),('IN19811','2012-11-30','10:40:00','Barthampalle');
+
