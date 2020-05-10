@@ -75,3 +75,9 @@ Arun Sandal         |897867785612435|9890989098|M     |  8956|
 Uday Pardeshi       |908989786756431|6787564980|M     |  9836|
 Nagma Solanki       |908912345361617|8787865456|F     |  5534|
 Uma Iyer            |476783459800724|7932784568|F     |  7835|
+
+
+============================================================================
+OFFICER
+
+CREATE TABLE public.OFFICER (officer_id char(6) CHECK(officer_id LIKE 'OF____'), officer_name varchar(30),officer_rank int, CONSTRAINT officer_pk PRIMARY KEY (officer_id));
