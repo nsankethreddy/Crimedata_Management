@@ -37,46 +37,22 @@ VALUES('Riddhi Abhishek', 601172998096149, 6925859853, 'F', 1111),('Astha Dhiraj
 ==========================================================================
 ACCUSED
 
-create table ACCUSED(adhar numeric(15) PRIMARY KEY , accused_name varchar(20),accused_gender char(1) check(accused_gender='M' OR accused_gender='F') , accused_alias varchar(10) ,accused_status varchar(10) 
- check(accused_status ='Bailed' OR accused_status ='Released' OR accused_status ='Arrested' OR accused_status ='Escaped'), accused_identification varchar(100) ,accused_age varchar(3) check(accused_age ~ '^[1-100]'));
+create table ACCUSED(adhar numeric(15) PRIMARY KEY , accused_name varchar(20),accused_gender char(1) check(accused_gender IN ('M','F','m','f')) , accused_alias varchar(10) ,accused_status varchar(10) 
+ check(accused_status in ('Bailed', 'Released','Arrested' ,'Escaped')), accused_identification varchar(100) ,accused_age NUMERIC(3),fir_id numeric(4),constraint fir_id_fk foreign key(fir_id) references fir(fir_id));
+
 
 INSERT INTO public.accused
-(adhar, accused_name, accused_gender, accused_alias, accused_status, accused_identification, accused_age)
+(adhar, accused_name, accused_gender, accused_alias, accused_status, accused_identification, accused_age, fir_id)
 VALUES 
-(755757641512323, 'Andy Reyes', 'M', 'Andy', 'Arrested', 'Mole on the chin', '34'), 
-(122120945598818, 'Lester Higgins', 'M', 'Lester', 'Bailed', 'Scar on the face', '31'),
-(640014902532644, 'Bradford Gomez', 'M', 'Brad', 'Bailed', 'Mole on stomach', '24'),
-(527032007745234, 'Micheal Jennings', 'M', 'Jenning', 'Bailed', 'Blue eyes', '26'),
-(343459534401788, 'Bert Mitchell', 'M', 'Bert', 'Bailed', 'Bald', '45'),
-(627313982654345, 'Minato Ellis', 'M', 'Ellis', 'Bailed', 'Ear missing', '63'),
-(545544054967129, 'Roosevelt Morgan', 'M', 'Morgan', 'Bailed', 'Lip ring', '19'),
-(399570643523212, 'Donald Woods', 'M', 'Donald', 'Bailed', 'Orange face', '28'),
-(222224064893837, 'Bena Kim', 'F', 'Kim', 'Bailed', '6 fingers on left hand', '39'),
-(762578909323787, 'Italia Robin', 'F', 'Italia', 'Bailed', 'Blonde curly hair', '44'),
-(223211916729587, 'Shalom Cross', 'F', 'Cross', 'Bailed', 'One eye blind', '86'),
-(294122921612121, 'Christie Fox', 'F', 'Fox', 'Bailed', 'Little finger missing on right hand', '49'),
-(119990817674655, 'Denice Ritchie', 'F', 'Den', 'Bailed', 'Left leg amputated', '48');
+(755757641512323, 'John parker', 'M', 'Man', 'Arrested', 'Mole on the chin', 34,1111), 
+(122120945598818, 'Anish Kini', 'M', 'Kini', 'Arrested', 'Scar on the face', 41,1234),
+(527032007745234, 'Micheal Jennings', 'M', 'Jenning', 'Released', 'Blue eyes', 26,1225),
+(343459534401788, 'Bert Mitchell', 'M', 'Bert', 'Bailed', 'Bald', 45,3245),
+(627313982654345, 'John Snow', 'M', 'Snow', 'Escaped', 'Ear missing', 63,3427),
+(545544054967129, 'Roosevelt Morgan', 'M', 'Morgan', 'Bailed', 'Lip ring', 29,8956),
+(222224064893837, 'Bena Kim', 'F', 'Kim', 'Released', '6 fingers on left hand', 39,9836),
+(762578909323787, 'Duch Robin', 'F', 'Duches', 'Bailed', 'Blonde curly hair', 44,5534),
+(223211916729587, 'Shalom Cross', 'F', 'Cross', 'Released', 'One eye blind', 28,4523),
+(294122921612121, 'Christie Fox', 'F', 'Fox', 'Bailed', 'Little finger missing on right hand',34,7835);
 
-
----------------------------------------------------
-create table ACCUSED(adhar numeric(15) PRIMARY KEY , accused_name varchar(20),accused_gender char(1) check(accused_gender='M' OR accused_gender='F') , accused_alias varchar(10) ,accused_status varchar(10) 
- check(accused_status ='Bailed' OR accused_status ='Released' OR accused_status ='Arrested' OR accused_status ='Escaped'), accused_identification varchar(100) ,accused_age NUMERIC(3));
-
- INSERT INTO public.accused
-(adhar, accused_name, accused_gender, accused_alias, accused_status, accused_identification, accused_age)
-VALUES 
-(755757641512323, 'Andy Reyes', 'M', 'Andy', 'Arrested', 'Mole on the chin', 34), 
-(122120945598818, 'Lester Higgins', 'M', 'Lester', 'Bailed', 'Scar on the face', 31),
-(640014902532644, 'Bradford Gomez', 'M', 'Brad', 'Bailed', 'Mole on stomach', 24),
-(527032007745234, 'Micheal Jennings', 'M', 'Jenning', 'Bailed', 'Blue eyes', 26),
-(343459534401788, 'Bert Mitchell', 'M', 'Bert', 'Bailed', 'Bald', 45),
-(627313982654345, 'Minato Ellis', 'M', 'Ellis', 'Bailed', 'Ear missing', 63),
-(545544054967129, 'Roosevelt Morgan', 'M', 'Morgan', 'Bailed', 'Lip ring', 19),
-(399570643523212, 'Donald Woods', 'M', 'Donald', 'Bailed', 'Orange face', 28),
-(222224064893837, 'Bena Kim', 'F', 'Kim', 'Bailed', '6 fingers on left hand', 39),
-(762578909323787, 'Italia Robin', 'F', 'Italia', 'Bailed', 'Blonde curly hair', 44),
-(223211916729587, 'Shalom Cross', 'F', 'Cross', 'Bailed', 'One eye blind', 86),
-(294122921612121, 'Christie Fox', 'F', 'Fox', 'Bailed', 'Little finger missing on right hand',49),
-(119990817674655, 'Denice Ritchie', 'F', 'Den', 'Bailed', 'Left leg amputated', 48);
-
-==================================================================
+========================================================================
