@@ -23,7 +23,7 @@ ACCUSED
 
 CREATE TABLE public.accused
 (
-    acc_id integer (5) NOT NULL ,
+    acc_id serial not null , 
     aadhar varchar(15) check(aadhar ~ '^[0-9]*$'),
     acc_name varchar(20) ,
     acc_gender char(1) CHECK (acc_gender in ('M','F','m','f')) ,
@@ -33,4 +33,31 @@ CREATE TABLE public.accused
     acc_address varchar(100) ,
     CONSTRAINT accused_pkey PRIMARY KEY (acc_id)
 )
+
+
+CREATE SEQUENCE public.accused_id
+    INCREMENT 1
+    START 10001
+    MINVALUE 10001
+    MAXVALUE 99999
+    CACHE 1;
+
+
+
+    INSERT INTO public.accused
+(aadhar, acc_name, acc_gender, acc_identification, acc_age, acc_contact, acc_address)
+values
+('921524461471673', 'Anuj Kamdar', 'M', 'Jony', 32, 8112750783, '60 /, Goyal Shopping Arcade, L T Road, Borivali (west),Mumbai'),
+('078634769996711', 'Ansh Butala', 'F', 'Butala', 43, 4781057734, 'K G Marg, Nr Siddhivinayak Temple, Prabhadevi,Kanpur'),
+('493625048434915', 'Pratima Mahajan', 'F', 'Prat', 23, 4238041145, 'Kailash Apartment, 129/c K M Sarani, Khidderpore,Kolkata'),
+('677467341112442', 'Prem Muni', 'M', 'Muni', 45, 5307394330, '53 , M.r.r.road,bangalore, Mrr Road,Bangalore'),
+('835123348121185', 'Sanjana Raghavan', 'F', 'Miss',30, 2493598719, 'R No 28, 109, Masjid Bunder(w),Mumbai'),
+('170499448720825', 'Anah Bhat', 'M', 'Bhat', 19 , 8510865840, 'Devahigh Schoo Road, 110, Opp.archana Theatre, Devanga School Road,Bangalore'),
+('578355046838963', 'Rishi Mittal', 'M', 'Mittalji', 40, 5569159646, '28 /, Azeema Bldg, Tsp Road, Opp Bus Stand, Kalasipalyam,Chennai'),
+('759631877182722', 'Prabodh Thaman', 'M', 'Thama', 65, 7291265888, '103 /c, /gr Floor, Dawawala Bldg, Khattar Galli Cross Lane, Opp Amar Wadi, C.p.tank,Mumbai'),
+('700954676379974', 'Pratap Raju', 'M', 'Raj', 55, 9024587738, 'Dina Patil Estate, Station Road, Bhandup(w),Mumbai'),
+('103685446821104', 'Lalita Dewan', 'F', 'Dewan', 59, 7494062898, '12  & , Sribihari Chambers, Lbs Marg, Opp Amar Gyan Indl E, Thane (west),Delhi');
+
+============================================================================
+
 	
