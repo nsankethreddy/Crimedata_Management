@@ -1,10 +1,11 @@
 ===========================================================================
 OFFICER
 
-CREATE TABLE public.OFFICER (officer_id char(6) CHECK(officer_id LIKE 'OF____'), officer_name varchar(30),officer_rank int, CONSTRAINT officer_pk PRIMARY KEY (officer_id));
+CREATE TABLE public.OFFICER (officer_id char(6) CHECK(officer_id LIKE 'OF____'), officer_name varchar(30),officer_rank varchar(3), CONSTRAINT officer_pk PRIMARY KEY (officer_id));
 
 INSERT INTO public.officer
 (officer_id, officer_name, officer_rank)
-values('OF1232','Riddhi Abhishek Nanda',1),('OF2389','Astha Dhiraj Mani',3),('OF6473', 'Tulsi Lanka', 4),('OF7789','Bahadur Kumer',2),('OF9876','Obaid Chandra Nagi',2),('OF8912','Komal Ramroop',4);
+values('OF1232','Riddhi Abhishek Nanda','DGP'),('OF2389','Astha Dhiraj Mani','ISP'),('OF6473', 'Tulsi Lanka', 'IAS'),('OF7789','Bahadur Kumer','DGP'),('OF9876','Obaid Chandra Nagi','ASP'),('OF8912','Komal Ramroop','ISP');
+
 
 ============================================================================
