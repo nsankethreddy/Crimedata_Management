@@ -100,3 +100,29 @@ values
 ===============================================================================
 LITIGATOR
 --------------
+
+CREATE TABLE public.litigator
+(
+    liti_name character varying(50) ,
+    liti_contact numeric(10),
+    liti_address character varying(100),
+    liti_gender char(1) CHECK (liti_gender in ('M','F','m','f')) ,
+    liti_age numeric(2),
+    CONSTRAINT litigator_pkey PRIMARY KEY (liti_name ,liti_contact)
+)
+
+INSERT INTO public.litigator
+(liti_name, liti_contact, liti_address, liti_gender, liti_age)
+values
+('Vipul Gopal', 5148759080, '441 , /, Matru Chhaya, Narshi Natha Street, Masjid Bunder (east),Mumbai', 'M', 19),
+('Ajit Minhas', 9033163681, '334  Pradeep,  P K Atre Road, Worli,Mumbai', 'M', 23),
+('Prem Divan', 5346663927, '90 , Hera Panna Shopping Ctr, Haji Ali, Tardeo,Mumbai', 'M', 32),
+('Charu Natarajan', 9623761770, '32 /b st Floor, , Krishna Niwas, S.b.s Road, Fort,Kolkata', 'F',33),
+('Samir Cheema', 1406195819, '83 , Roman Building, S B Road, Near R K Studio, Colaba,Delhi', 'M', 35),
+('Aamani Sodhi', 1631432650, 'Shop No-5, 113/115, Sarswati Sadan, K N Road, Chinch Bunder,Bangalore', 'F', 43),
+('Banhi Bakshi', 8887702652, '37 , Kasturi Co Op Hsg, Hanuman Nagar, Opp Hanuman Mandir, Hyderabad', 'F', 54),
+('Manish Brar', 9075803531, '54 , Bldg. No. , Amar Jyoti, Manish Nagar,  Banglogpalli, Chennai', 'M', 51),
+('Sunil Sankaran', 1186496761, '288 , N C Kelkar Rd, Dadar (west),Bangalore', 'M',32),
+('Dharma Choudhry', 7803015711, '34  B, Mg Rdnaharman Shakti Shopping Centre, Iit Powai,Delhi', 'M', 30);
+
+==================================================================================
