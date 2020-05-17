@@ -1,5 +1,6 @@
 ===========================================================================
 OFFICER
+----------
 
 CREATE TABLE public.OFFICER (
 officer_id char(6) CHECK(officer_id LIKE 'OF____'),
@@ -20,6 +21,7 @@ values
 
 ============================================================================
 ACCUSED
+-----------
 
 CREATE TABLE public.accused
 (
@@ -35,7 +37,7 @@ CREATE TABLE public.accused
 )
 
 
-CREATE SEQUENCE public.accused_id
+CREATE SEQUENCE public.my_accused_id
     INCREMENT 1
     START 10001
     MINVALUE 10001
@@ -44,20 +46,57 @@ CREATE SEQUENCE public.accused_id
 
 
 
-    INSERT INTO public.accused
+INSERT INTO public.accused
 (aadhar, acc_name, acc_gender, acc_identification, acc_age, acc_contact, acc_address)
 values
-('921524461471673', 'Anuj Kamdar', 'M', 'Jony', 32, 8112750783, '60 /, Goyal Shopping Arcade, L T Road, Borivali (west),Mumbai'),
-('078634769996711', 'Ansh Butala', 'F', 'Butala', 43, 4781057734, 'K G Marg, Nr Siddhivinayak Temple, Prabhadevi,Kanpur'),
-('493625048434915', 'Pratima Mahajan', 'F', 'Prat', 23, 4238041145, 'Kailash Apartment, 129/c K M Sarani, Khidderpore,Kolkata'),
-('677467341112442', 'Prem Muni', 'M', 'Muni', 45, 5307394330, '53 , M.r.r.road,bangalore, Mrr Road,Bangalore'),
-('835123348121185', 'Sanjana Raghavan', 'F', 'Miss',30, 2493598719, 'R No 28, 109, Masjid Bunder(w),Mumbai'),
-('170499448720825', 'Anah Bhat', 'M', 'Bhat', 19 , 8510865840, 'Devahigh Schoo Road, 110, Opp.archana Theatre, Devanga School Road,Bangalore'),
-('578355046838963', 'Rishi Mittal', 'M', 'Mittalji', 40, 5569159646, '28 /, Azeema Bldg, Tsp Road, Opp Bus Stand, Kalasipalyam,Chennai'),
-('759631877182722', 'Prabodh Thaman', 'M', 'Thama', 65, 7291265888, '103 /c, /gr Floor, Dawawala Bldg, Khattar Galli Cross Lane, Opp Amar Wadi, C.p.tank,Mumbai'),
-('700954676379974', 'Pratap Raju', 'M', 'Raj', 55, 9024587738, 'Dina Patil Estate, Station Road, Bhandup(w),Mumbai'),
-('103685446821104', 'Lalita Dewan', 'F', 'Dewan', 59, 7494062898, '12  & , Sribihari Chambers, Lbs Marg, Opp Amar Gyan Indl E, Thane (west),Delhi');
+('921524461471673', 'Anuj Kamdar', 'M', 'Mole on the chin', 32, 8112750783, '60 /, Goyal Shopping Arcade, L T Road, Borivali (west),Mumbai'),
+('078634769996711', 'Ansh Butala', 'F', 'Scar on the face', 43, 4781057734, 'K G Marg, Nr Siddhivinayak Temple, Prabhadevi,Kanpur'),
+('493625048434915', 'Pratima Mahajan', 'F', 'Blue eyes', 23, 4238041145, 'Kailash Apartment, 129/c K M Sarani, Khidderpore,Kolkata'),
+('677467341112442', 'Prem Muni', 'M', 'Bald', 45, 5307394330, '53 , M.r.r.road,bangalore, Mrr Road,Bangalore'),
+('835123348121185', 'Sanjana Raghavan', 'F', 'Right ear missing',30, 2493598719, 'R No 28, 109, Masjid Bunder(w),Mumbai'),
+('170499448720825', 'Anah Bhat', 'M', 'Lip ring', 19 , 8510865840, 'Devahigh Schoo Road, 110, Opp.archana Theatre, Devanga School Road,Bangalore'),
+('578355046838963', 'Rishi Mittal', 'M', '6 fingers on left hand', 40, 5569159646, '28 /, Azeema Bldg, Tsp Road, Opp Bus Stand, Kalasipalyam,Chennai'),
+('759631877182722', 'Prabodh Thaman', 'M', 'Blonde curly hair', 65, 7291265888, '103 /c, /gr Floor, Dawawala Bldg, Khattar Galli Cross Lane, Opp Amar Wadi, C.p.tank,Mumbai'),
+('700954676379974', 'Pratap Raju', 'M', 'One eye blind', 55, 9024587738, 'Dina Patil Estate, Station Road, Bhandup(w),Mumbai'),
+('103685446821104', 'Lalita Dewan', 'F', 'Little finger missing on right hand', 59, 7494062898, '12  & , Sribihari Chambers, Lbs Marg, Opp Amar Gyan Indl E, Thane (west),Delhi');
 
 ============================================================================
+VICTIM
+------------
 
-	
+CREATE TABLE public.victim
+(
+    vic_id integer NOT null ,
+    vic_name varchar (40),
+    vic_age numeric(2),
+    vic_contact numeric(10),
+    vic_gender char(1) CHECK (acc_gender in ('M','F','m','f')) ,
+    vic_address character varying(100),
+    CONSTRAINT victim_pkey PRIMARY KEY (v_id),
+)
+
+CREATE SEQUENCE public.my_victim_id
+    INCREMENT 1
+    START 1551
+    MINVALUE 1551
+    MAXVALUE 9999
+    CACHE 1;
+
+
+INSERT INTO public.victim
+(vic_name, vic_age, vic_contact, vic_gender, vic_address)
+values
+('Shaurya Som', 23, 9907177517, 'M', '42  Ashok Nagar, Ashoknagar,Hyderabad'),
+('Jayesh Pillay', 33, 7565596380, 'M', 'Shp No-2 Ancel Apartments, New Mill Road, Nehru Nagar,Mumbai'),
+('Ranjit Biswas', 25, 9828319127, 'M', '50 / Navjivan Soc, Lamington Rd,Mumbai'),
+('Sima Bali', 67, 6459256545, 'F', 'Shop No 3, Nirmala Apt, J P Road, Opp Rajkumar Hotel, Andheri(w),Mumbai'),
+('Gauri Roy', 55, 4389775383, 'F', '46 / Noor Mahal, Dr.b.a Road, Matunga(c.r),Mumbai'),
+('Sanjana Bhakta', 37, 7486112210, 'F', 'B-53 Opp Monginis, New Link Rd, Andheri (west),Kolkata'),
+('Manju Bakshi', 75, 7940971647, 'F', '11 , Kukereja Plaza, Sector - , Belapur(cbd),Chennai'),
+('Arushi Manda', 23, 1199525820, 'F', '44 , Nand Bhavan, J.p.road, Opp Sports Complex, Andheri (west),Bangalore'),
+('Navin Guha', 32, 5653334520, 'M', 'Shop No 4, Chandan Niwas, Chhatrapati Shivaji Road, Opp Indian Oil Petrol Pump, Dahisar (east),Delhi'),
+('Prasanna Pal', 43, 8712360888, 'M', 'Shop No 22/23, Arasa Shopping Centre, Anekalu (west),Bangalore');
+
+===============================================================================
+LITIGATOR
+--------------
