@@ -7,5 +7,4 @@ INSERT INTO public.officer
 (officer_id, officer_name, officer_rank)
 values('OF1232','Riddhi Abhishek Nanda','DGP'),('OF2389','Astha Dhiraj Mani','ISP'),('OF6473', 'Tulsi Lanka', 'IAS'),('OF7789','Bahadur Kumer','DGP'),('OF9876','Obaid Chandra Nagi','ASP'),('OF8912','Komal Ramroop','ISP');
 
-
 ============================================================================
