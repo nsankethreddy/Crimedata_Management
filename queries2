@@ -1,10 +1,36 @@
 ===========================================================================
 OFFICER
 
-CREATE TABLE public.OFFICER (officer_id char(6) CHECK(officer_id LIKE 'OF____'), officer_name varchar(30),officer_rank varchar(3), CONSTRAINT officer_pk PRIMARY KEY (officer_id));
+CREATE TABLE public.OFFICER (
+officer_id char(6) CHECK(officer_id LIKE 'OF____'),
+officer_name varchar(30),officer_rank varchar(3), 
+CONSTRAINT officer_pk PRIMARY KEY (officer_id)
+);
+
 
 INSERT INTO public.officer
-(officer_id, officer_name, officer_rank)
-values('OF1232','Riddhi Abhishek Nanda','DGP'),('OF2389','Astha Dhiraj Mani','ISP'),('OF6473', 'Tulsi Lanka', 'IAS'),('OF7789','Bahadur Kumer','DGP'),('OF9876','Obaid Chandra Nagi','ASP'),('OF8912','Komal Ramroop','ISP');
+(officer_id,	 officer_name, officer_rank)
+values
+('OF1232','Riddhi Abhishek Nanda','DGP'),
+('OF2389','Astha Dhiraj Mani','ISP'),
+('OF6473', 'Tulsi Lanka', 'IAS'),
+('OF7789','Bahadur Kumer','DGP'),
+('OF9876','Chandra Nagi','ASP'),
+('OF8912','Komal Ramroop','ISP');
 
 ============================================================================
+ACCUSED
+
+CREATE TABLE public.accused
+(
+    acc_id integer (5) NOT NULL ,
+    aadhar varchar(15) check(aadhar ~ '^[0-9]*$'),
+    acc_name varchar(20) ,
+    acc_gender char(1) CHECK (acc_gender in ('M','F','m','f')) ,
+    acc_identification varchar(100),
+    acc_age numeric(2,0),
+    acc_contact numeric(10),
+    acc_address varchar(100) ,
+    CONSTRAINT accused_pkey PRIMARY KEY (acc_id)
+)
+	
