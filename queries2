@@ -215,6 +215,31 @@ values
 (2370);
 
 =====================================================================================
+CASE_INFO
+----------------
 
+create table case_info(
+fir_id int PRIMARY KEY,
+officer_id char(6) ,
+status varchar(7) CHECK(status in ('OPEN','CLOSED')),
+description varchar(1000),
+CONSTRAINT cd_fk1 FOREIGN KEY(fir_id) references fir_vicid(fir_id),
+CONSTRAINT cd_fk2 FOREIGN KEY(officer_id) references officer(officer_id) );
+
+INSERT INTO public.case_info
+(fir_id, officer_id, status, description)
+values
+(2361, 'OF1232', 'OPEN', 'Child Abuse'),
+(2362, 'OF2389', 'OPEN', 'Serial Arson	'),
+(2363, 'OF6473', 'CLOSED', 'Aggravated Assault'),
+(2364, 'OF7789', 'CLOSED', 'Robbery'),
+(2365, 'OF9876', 'OPEN', 'Harassment'),
+(2366, 'OF7789', 'CLOSED', 'Bribery'),
+(2367, 'OF8912', 'CLOSED', 'Racketeering'),
+(2368, 'OF6473', 'OPEN', 'Robbery'),
+(2369, 'OF8912', 'CLOSED', 'Threatening'),
+(2370, 'OF7789', 'CLOSED', 'Public newsense');
+
+==================================================================================
 
 
