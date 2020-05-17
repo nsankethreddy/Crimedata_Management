@@ -192,5 +192,29 @@ values
 (1560, 'Anekalu (west),Bangalore', '2018-4-27', '23:10', 'Anekalu (west),Bangalore', '2018-4-27', '13:10', 'Dharma Choudhry', 7803015711, 10010, 'Public newsense');
 
 ====================================================================================
+CASE_FIR
+-------------
+
+create table case_fir(
+case_id SERIAL PRIMARY KEY ,
+fir_id integer,
+constraint case_fir_fk FOREIGN KEY(fir_id) references fir_vicid(fir_id));
+
+INSERT INTO public.case_fir
+(fir_id)
+values
+(2361),
+(2362),
+(2363),
+(2364),
+(2365),
+(2366),
+(2367),
+(2368),
+(2369),
+(2370);
+
+=====================================================================================
+
 
 
