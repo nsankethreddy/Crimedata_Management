@@ -128,11 +128,19 @@ values
 ==================================================================================
 FIR_VICID
 ------------------
+
 CREATE TABLE  fir_vicid(
 fir_id SERIAL ,
 vic_id int ,
 CONSTRAINT fir_vicid_fk Foreign key(vic_id) references victim(vic_id),
 CONSTRAINT fir_pkey PRIMARY KEY (fir_id));
+
+CREATE SEQUENCE public.my_fir_vic_id
+    INCREMENT 1
+    START 2361
+    MINVALUE 2361
+    MAXVALUE 9999
+    CACHE 1;
 
 INSERT INTO public.fir_vicid
 (vic_id)
@@ -149,3 +157,40 @@ values
 (1560);
  
 =====================================================================================
+FIR_INFO
+---------------
+
+create table fir_info(
+vic_id int PRIMARY KEY ,
+log_place varchar(100),
+log_date date DEFAULT current_date,
+log_time time default current_time ,
+incident_place varchar(100),
+incident_date date,
+incident_time time,
+liti_name varchar(50),
+liti_contact numeric(10),
+acc_id int ,
+crime varchar(1000),
+constraint fir_acc_fk FOREIGN KEY(acc_id) references accused(acc_id),
+constraint fir_liti_fk FOREIGN KEY(liti_name,liti_contact) references litigator(liti_name,liti_contact),
+constraint fir_vic_fk FOREIGN KEY(vic_id) references victim(vic_id));
+
+
+INSERT INTO public.fir_info
+(vic_id, log_place, log_date, log_time, incident_place, incident_date, incident_time, liti_name, liti_contact, acc_id, crime)
+values
+(1551, 'Ashoknagar,Hyderabad', '2000-12-23', '16:30', 'Ashoknagar,Hyderabad',  '2000-12-22', '23:30', 'Vipul Gopal', 5148759080, 10001, 'Child Abuse'),
+(1552, 'Nehru Nagar,Mumbai', '2009-11-13', '14:13', 'Nehru Nagar,Mumbai', '2009-11-12', '4:13', 'Ajit Minhas', 9033163681, 10002, 'Serial Arson	'),
+(1553, 'Lamington Rd,Mumbai', '2018-3-23', '12:09', 'Lamington Rd,Mumbai', '2018-3-21', '12:00', 'Prem Divan', 5346663927, 10003, 'Aggravated Assault'),
+(1554, 'Andheri(w),Mumbai', '2016-3-1', '13:45', 'Andheri(w),Mumbai', '2016-3-1', '11:45', 'Charu Natarajan', 9623761770, 10004, 'Robbery'),
+(1555, ' Matunga(c.r),Mumbai', '2020-1-23', '3:30', 'Matunga(c.r),Mumbai', '2020-1-23', '1:30', 'Samir Cheema', 1406195819, 10005, 'Harassment'),
+(1556, 'Andheri (west),Kolkata', '2019-12-21', '2:50', 'Andheri (west),Kolkata', '2019-12-20', '2:50', 'Aamani Sodhi', 1631432650, 10006, 'Bribery'),
+(1557, 'Belapur(cbd),Chennai', '2009-2-4', '21:30', 'Belapur(cbd),Chennai', '2009-2-4', '22:30', 'Banhi Bakshi', 8887702652, 10007, 'Racketeering'),
+(1558, 'Andheri (west),Bangalore', '2009-3-30', '18:10', 'Andheri (west),Bangalore', '2009-3-30', '14:10', 'Manish Brar', 9075803531, 10008, 'Robbery'),
+(1559, 'Dahisar (east),Delhi', '2017-12-17', '19:45', 'Dahisar (east),Delhi', '2017-12-17', '14:45', 'Sunil Sankaran', 1186496761, 10009, 'Threatening'),
+(1560, 'Anekalu (west),Bangalore', '2018-4-27', '23:10', 'Anekalu (west),Bangalore', '2018-4-27', '13:10', 'Dharma Choudhry', 7803015711, 10010, 'Public newsense');
+
+====================================================================================
+
+
