@@ -232,7 +232,7 @@ fir_id int PRIMARY KEY,
 officer_id char(6) ,
 status varchar(7) CHECK(status in ('OPEN','CLOSED')),
 description varchar(1000),
-CONSTRAINT cd_fk1 FOREIGN KEY(fir_id) references fir_vicid(fir_id),
+CONSTRAINT cd_fk1 FOREIGN KEY(fir_id) references fir_info(fir_id),
 CONSTRAINT cd_fk2 FOREIGN KEY(officer_id) references officer(officer_id) );
 
 INSERT INTO public.case_info
@@ -251,4 +251,41 @@ values
 
 ==================================================================================
 
+
+##############################################################################3
+
+TRiggers
+
+create function acc_trig()
+returns trigger
+as $$
+declare cnt integer;
+BEGIN
+if exists(
+select table_name from information_schema.tables where table_name = 'acc_temp')
+then
+drop table acc_temp;
+end if;
+
+create temp table acc_temp as
+select acc_id from accused where new.aadhar = accused.aadhar;
+
+SELECT count(*) INTO cnt from acc_temp;
+if cnt>=1
+THEN
+   RAISE EXCEPTION 'Accused details already exists';
+   RETURN NULL;
+END IF;
+IF cnt=0
+THEN
+RETURN NEW;
+END IF;
+RETURN NULL;
+END;
+$$	
+LANGUAGE plpgsql;
+
+
+create trigger acc_trigger BEFORE insert or update on accused
+for each row execute procedure acc_trig();
 
