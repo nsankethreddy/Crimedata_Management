@@ -161,7 +161,8 @@ FIR_INFO
 ---------------
 
 create table fir_info(
-vic_id int PRIMARY KEY ,
+fir_id SERIAL PRIMARY KEY,
+vic_id int ,
 log_place varchar(100),
 log_date date DEFAULT current_date,
 log_time time default current_time ,
@@ -175,6 +176,14 @@ crime varchar(1000),
 constraint fir_acc_fk FOREIGN KEY(acc_id) references accused(acc_id),
 constraint fir_liti_fk FOREIGN KEY(liti_name,liti_contact) references litigator(liti_name,liti_contact),
 constraint fir_vic_fk FOREIGN KEY(vic_id) references victim(vic_id));
+
+
+CREATE SEQUENCE public.my_fir_info
+    INCREMENT 1
+    START 2361
+    MINVALUE 2361
+    MAXVALUE 9999
+    CACHE 1;
 
 
 INSERT INTO public.fir_info
