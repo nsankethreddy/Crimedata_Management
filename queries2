@@ -228,7 +228,7 @@ TRIGGERS
 
 ###########################################################################
 
-1)To avoid duplicate Accused details
+1)To avoid duplicate in ACCUSED table
 (Checks for aadhar)
 
 create function acc_trig()
@@ -266,7 +266,7 @@ for each row execute procedure acc_trig();
 
 ---------------------------------------------------------------------------
 
-Trigger to avoid duplicate rows in Victim table
+Trigger to avoid duplicate rows in VICTIM table
 (Checks for name and contact)
 
 CREATE FUNCTION vic_trig()
@@ -299,5 +299,43 @@ LANGUAGE plpgsql;
 
 CREATE TRIGGER vic_triggger BEFORE INSERT OR update ON victim
 FOR EACH ROW EXECUTE PROCEDURE vic_trig();
+
+---------------------------------------------------------------------------
+
+Trigger to avoid duplicate rows in FIR_INFO
+(checks for crime, incident date, incident place and victimID)
+
+
+CREATE FUNCTION fir_trig()
+RETURNS TRIGGER
+AS $$
+DECLARE cnt_fir integer;
+BEGIN
+IF EXISTS (
+select table_name from information_schema.tables where table_name='fir_temp') 
+THEN 
+DROP TABLE fir_temp;
+END IF;
+CREATE TEMP TABLE FIR_table AS
+SELECT fir_id from  fir_info WHERE (NEW.crime = fir_info.crime AND NEW.vic_id=fir_info.vic_id AND NEW.incident_place=fir_info.incident_place AND 
+									 NEW.incident_date=fir_info.incident_date ) ;
+SELECT count(*) INTO cnt_fir from  fir_temp;
+if cnt_fir>=1
+THEN
+   RAISE EXCEPTION 'FIR already filed on this crime';
+   RETURN NULL;
+END IF;
+IF cnt_fir=0
+THEN
+RETURN NEW;
+END IF;
+RETURN NULL;
+END;
+$$
+LANGUAGE plpgsql;
+
+
+CREATE TRIGGER fir_trigger BEFORE INSERT OR update ON fir_info
+FOR EACH ROW EXECUTE PROCEDURE fir_trig();
 
 ---------------------------------------------------------------------------
