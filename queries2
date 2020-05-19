@@ -223,8 +223,13 @@ values
 ###########################################################################
 ###########################################################################
 ###########################################################################
+
 TRIGGERS
+
 ###########################################################################
+
+1)To avoid duplicate Accused details
+(Checks for aadhar)
 
 create function acc_trig()
 returns trigger
@@ -259,3 +264,40 @@ LANGUAGE plpgsql;
 create trigger acc_trigger BEFORE insert or update on accused
 for each row execute procedure acc_trig();
 
+---------------------------------------------------------------------------
+
+Trigger to avoid duplicate rows in Victim table
+(Checks for name and contact)
+
+CREATE FUNCTION vic_trig()
+RETURNS TRIGGER
+AS $$
+DECLARE cnt_vic integer;
+BEGIN
+IF EXISTS (
+select table_name from information_schema.tables where table_name='vic_temp') 
+THEN 
+DROP TABLE vic_temp;
+END IF;
+CREATE TEMP TABLE vic_temp AS
+SELECT vic_id from  victim WHERE (NEW.vic_name = victim.vic_name AND NEW.vic_contact=victim.vic_contact) ;
+SELECT count(*) INTO cnt_vic from vic_temp;
+if cnt_vic>=1
+THEN
+   RAISE EXCEPTION 'Victim details already exists';
+   RETURN NULL;
+END IF;
+IF cnt_vic=0
+THEN
+RETURN NEW;
+END IF;
+RETURN NULL;
+END;
+$$
+LANGUAGE plpgsql;
+
+
+CREATE TRIGGER vic_triggger BEFORE INSERT OR update ON victim
+FOR EACH ROW EXECUTE PROCEDURE vic_trig();
+
+---------------------------------------------------------------------------
