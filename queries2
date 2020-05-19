@@ -126,37 +126,6 @@ values
 ('Dharma Choudhry', 7803015711, '34  B, Mg Rdnaharman Shakti Shopping Centre, Iit Powai,Delhi', 'M', 30);
 
 ==================================================================================
-FIR_VICID
-------------------
-
-CREATE TABLE  fir_vicid(
-fir_id SERIAL ,
-vic_id int ,
-CONSTRAINT fir_vicid_fk Foreign key(vic_id) references victim(vic_id),
-CONSTRAINT fir_pkey PRIMARY KEY (fir_id));
-
-CREATE SEQUENCE public.my_fir_vic_id
-    INCREMENT 1
-    START 2361
-    MINVALUE 2361
-    MAXVALUE 9999
-    CACHE 1;
-
-INSERT INTO public.fir_vicid
-(vic_id)
-values
-(1551),
-(1552),
-(1553),
-(1554),
-(1555),
-(1556),
-(1557),
-(1558),
-(1559),
-(1560);
- 
-=====================================================================================
 FIR_INFO
 ---------------
 
