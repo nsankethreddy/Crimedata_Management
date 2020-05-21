@@ -335,7 +335,7 @@ $$
 LANGUAGE plpgsql;
 
 
-CREATE TRIGGER fir_trigger BEFORE INSERT OR update ON fir_info
+CREATE TRIGGER fir_trigger BEFORE INSERT ON fir_info
 FOR EACH ROW EXECUTE PROCEDURE fir_trig();
 
 ---------------------------------------------------------------------------
