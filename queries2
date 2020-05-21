@@ -351,3 +351,8 @@ FOR EACH ROW EXECUTE PROCEDURE fir_trig();
 alter table fir_info drop constraint fir_acc_fk ;
 alter table fir_info add constraint fir_acc_fk foreign key(acc_id)  references accused(acc_id) 
 
+=============================
+COMPLEX Queries
+
+select aadhar from (case_fir CF join fir_info F on CF.fir_id=F.fir_id join accused AC on AC.acc_id = F.acc_id ) 
+where case_id=8
