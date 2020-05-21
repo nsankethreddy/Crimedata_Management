@@ -142,9 +142,9 @@ liti_name varchar(50),
 liti_contact numeric(10),
 acc_id int ,
 crime varchar(1000),
-constraint fir_acc_fk FOREIGN KEY(acc_id) references accused(acc_id),
-constraint fir_liti_fk FOREIGN KEY(liti_name,liti_contact) references litigator(liti_name,liti_contact),
-constraint fir_vic_fk FOREIGN KEY(vic_id) references victim(vic_id));
+constraint fir_acc_fk FOREIGN KEY(acc_id) references accused(acc_id) ,
+constraint fir_liti_fk FOREIGN KEY(liti_name,liti_contact) references litigator(liti_name,liti_contact) ,
+constraint fir_vic_fk FOREIGN KEY(vic_id) references victim(vic_id) );
 
 
 CREATE SEQUENCE public.my_fir_info
@@ -339,3 +339,15 @@ CREATE TRIGGER fir_trigger BEFORE INSERT OR update ON fir_info
 FOR EACH ROW EXECUTE PROCEDURE fir_trig();
 
 ---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+alter table fir_info drop constraint fir_acc_fk ;
+alter table fir_info add constraint fir_acc_fk foreign key(acc_id)  references accused(acc_id) 
+
