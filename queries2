@@ -346,7 +346,7 @@ FOR EACH ROW EXECUTE PROCEDURE fir_trig();
 
 
 
-
+alter table case_fir add constraint case_fir_fk foreign key(fir_id)  references case_info(fir_id) 
 
 alter table fir_info drop constraint fir_acc_fk ;
 alter table fir_info add constraint fir_acc_fk foreign key(acc_id)  references accused(acc_id) 
