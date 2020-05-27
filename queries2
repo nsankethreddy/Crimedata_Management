@@ -360,10 +360,6 @@ where case_id=8
 
 
 
-
-
-
-
 SELECT DISTINCT
 SDTables.table_catalog as DatabaseName,
 SDTables.table_schema as ParentSchema,
@@ -388,3 +384,19 @@ LEFT JOIN information_schema.key_column_usage SDKeys2
 ON SDKeys.position_in_unique_constraint=SDKeys2.ordinal_position AND SDReference.unique_constraint_catalog=SDKeys2.constraint_catalog AND SDReference.unique_constraint_schema=SDKeys2.constraint_schema AND SDReference.unique_constraint_name=SDKeys2.constraint_name
 WHERE SDTables.TABLE_TYPE='BASE TABLE' AND SDTables.table_schema NOT IN('information_schema','pg_catalog')
 ORDER BY ParentSchema, ParentTable, ColumnOrder
+
+
+
+select acc_name from accused where acc_id in (select acc_id from fir_info where liti_name in (select liti_name from litigator where liti_gender = 'M' and liti_age > 20 ) )
+
+the officer's name who is incharge of murder cases:
+
+select officer_name from officer where officer_id in (select officer_id from case_info where fir_id in (select fir_id from fir_info where (crime = 'MURDER') or (crime = 'murder')))
+
+the accused name whose age is above ag accused age.
+
+select acc_name from accused where acc_age > (select avg(acc_age) from accused)
+
+count of male and female victims
+
+select vic_gender, count( vic_gender) from victim group by vic_gender
