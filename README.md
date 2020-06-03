@@ -12,4 +12,4 @@ This is the schema of the tables in database
 
 ``` For all the information related to the project read through the report ```
 
-< For this project I used DBever to work with the postgres and Jupyter-Notebook to work with python >
+< For this project I used DBever to work with the postgres and Jupyter-Notebook to work with python , And the 'queries' file contains the exact queries I used during the project >
