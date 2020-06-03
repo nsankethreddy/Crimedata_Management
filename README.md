@@ -7,7 +7,7 @@
 
 ![database diagram](./media/db_schema.png)
 
-This is the schema of the tables in database
+This is the schema of the tables in database ,Here the orange-key represents the primary key and the blue-Bent arrow represents the foreign keys. 
 
 
 ``` For all the information related to the project read through the report ```
