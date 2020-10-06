@@ -15,4 +15,4 @@ A crime management system which allows the user to file FIRs and search for a pa
 ##### More details regarding the project can be found in the report attached.
 
 ```Implementation of this database management system was done using DBeaver which has a support for popstgresql, and Jupyter notebook for the python-frontend.
-Attached "queries" contains some simple queries that could be executed on the database.```
+Attached "queries" contains all the necessary queries to create tables, triggers and insert data into tables, and also some simple queries that could be executed on the database.```
