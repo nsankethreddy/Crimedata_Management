@@ -1,5 +1,7 @@
 # Crimedata management
 -----------------------------
+A crime management system which allows the user to file FIRs and search for a particular FIR and its related crime details.
+
 ## Requirements :
 =================
 - postgresql
@@ -8,9 +10,9 @@
 
 ![database diagram](./media/db_schema.png)
 
-#### This is the schema of the tables in database ,Here the orange-key represents the primary key and the blue-Bent arrow represents the foreign keys. 
+#### Above is the database schema, where the orange-key represents a primary key and the blue-Bent arrow represents the foreign keys. 
 
+##### More details regarding the project can be found in the report attached.
 
-##### For all the other information related to the project refer to the report .
-
-```  For this project I used DBever to work with the postgres and Jupyter-Notebook to work with python , And the 'queries' file contains the exact queries I used during the project creation ```
+Implementation of this database management system was done using DBeaver which has a support for popstgresql, and Jupyter notebook for the python-frontend.</br>
+Attached "queries" contains all the necessary queries to create tables, triggers and insert data into tables, and also some simple queries that could be executed on the database.
